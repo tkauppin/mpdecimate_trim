@@ -22,6 +22,7 @@ cargs.add_argument("--videotoolbox", action="store_true", help="Use Apple Video 
 cargs.add_argument("--videotoolbox-decimate", action="store_true",help="Use Apple Video Toolbox for hardware accelerated decimate filter")
 cargs.add_argument("--debug", action="store_true", help="Do not remove anything even on successful run. Use loglevel debug for all ffmpeg calls")
 cargs.add_argument("--output-to-cwd", action="store_true", help="Save output file to where the script is run (default is location of the input file)")
+cargs.add_argument("--vfparams", type=str, default="mpdecimate=lo=64*4:hi=64*10", help="mpdecimate vf parameters")
 cargs.add_argument("filepath", help="File to trim")
 cargs = cargs.parse_args()
 
@@ -104,7 +105,7 @@ mpdecimate_fn = ffmpeg(
     True,
     *hwargs_decimate(),
     "-i", cargs.filepath,
-    "-vf", "mpdecimate=lo=64*4:hi=64*10",
+    "-vf", cargs.vfparams,
     "-loglevel", "debug",
     "-f", "null", "-",
 )
