@@ -10,7 +10,7 @@ Needs `Python3.7+` and `ffmpeg`.
 
 ```bash
 $ mpdecimate_trim.py [--keep] [--skip SKIP] [--vaapi <render_device_filepath>] [--vaapi-decimate [render_device_filepath]] [--videotoolbox] [--videotoolbox-decimate] [--debug] <filepath>
-```
+
 
 This will take file at `<filepath>`, detect frames with certain similarity, re-encode it with them removed (using `libx265`/`hevc_vaapi`) and delete the original file.
 
